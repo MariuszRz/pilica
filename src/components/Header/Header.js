@@ -12,7 +12,7 @@ const Header = () => {
         <Link exact to={`/`}>
           Strona główna
         </Link>
-        <Link to={`/news`}>Aktualności</Link>
+        <Link to={`/aktualnosci`}>Aktualności</Link>
         <Link to={`/historia`}>Historia</Link>
         <Link to={`/login`}>Logowanie</Link>
       </Navigation>
