@@ -5,7 +5,8 @@ import theme from 'utils/theme';
 import { Section, Aside, Main } from './app.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Header } from 'components';
-import { HomePage, News, History } from 'pages';
+import { HomePage, News, History, Login } from 'pages';
+
 function App() {
   return (
     <BrowserRouter>
@@ -50,7 +51,7 @@ function App() {
               <Route path={`/`} exact component={HomePage} />
               <Route path={`/news`} exact component={News} />
               <Route path={`/history`} exact component={History} />
-              <Route path={`/login`} component={HomePage} />
+              <Route path={`/login`} component={Login} />
               <Route component={HomePage} />
             </Switch>
           </Main>

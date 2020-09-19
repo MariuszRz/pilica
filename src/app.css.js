@@ -16,7 +16,7 @@ export const Aside = styled.aside`
     padding: 5px 10px;
     margin: 15px 0;
     border-radius: 15px;
-    box-shadow: 5px 5px 10px ${({ theme }) => theme.shadow};
+    box-shadow: 1px 3px 4px ${({ theme }) => theme.shadow};
 
     h2 {
       margin: 0 5px;
