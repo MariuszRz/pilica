@@ -90,7 +90,9 @@ const Login = () => {
           </Row>
         )}
         <Row>
-          <Button type="submit">Zaloguj</Button>
+          <Button ico={load && 'load'} type="submit">
+            {load ? 'Logowanie' : 'Zaloguj'}
+          </Button>
         </Row>
       </Form>
     </main>
