@@ -4,7 +4,9 @@ export const Component = styled.input`
   padding: 5px;
   margin-top: 5px;
   height: 30px;
-  border: 2px solid ${({ theme }) => theme.color.blue.light};
+  border: 2px solid
+    ${({ theme, error }) =>
+      error ? theme.color.red.light : theme.color.blue.light};
   border-radius: 5px;
   transition: border 0.2s ease-in-out;
   &:active,

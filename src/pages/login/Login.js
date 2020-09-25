@@ -1,23 +1,94 @@
-import { Button, Form, Input, Label } from 'components';
+import { Alert, Button, Form, Input, Label } from 'components';
 import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai';
+import Swal from 'sweetalert2';
 import { Row } from 'components/Form/form.css';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Login = () => {
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorLogin, setErrorLogin] = useState(false);
+  const [errorPassword, setErrorPassword] = useState(false);
+  const [save, setSave] = useState(false);
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    setSave(true);
+
+    if (login === '') {
+      setErrorLogin(true);
+    } else {
+      setErrorLogin(false);
+    }
+    if (password === '') {
+      setErrorPassword(true);
+    } else {
+      setErrorPassword(false);
+    }
+
+    if (errorLogin || errorPassword) {
+      return;
+    }
+
+    // const formData = new FormData();
+    // formData.append('login', login);
+    // formData.append('password', password);
+
+    // const url = `${process.env.REACT_APP_API_URL}/logistyka/api/index.php`;
+    // fetch(url, { method: 'POST', body: formData })
+    //   .then((response) => response.json())
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       Swal.fire({
+    //         icon: 'success',
+    //         title: response.item.number,
+    //         text: response.item.name,
+    //       });
+    //     } else {
+    //       Swal.fire({
+    //         icon: 'error',
+    //         title: 'Nie udało się zapisać ',
+    //         text: `danych`,
+    //       });
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     Swal.fire({
+    //       icon: 'error',
+    //       title: 'Nie udało się zapisać',
+    //       text: error,
+    //     });
+    //     setSave(false);
+    //   });
+  };
+
   return (
     <main>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <h1>Podaj dane logowania</h1>
         <Label>
           <AiOutlineUser />
           Login:
         </Label>
-        <Input type="text" />
+        <Input
+          error={errorLogin}
+          type="text"
+          onChange={(e) => setLogin(e.target.value)}
+        />
         <Label>
           <AiOutlineLock />
           Hasło:
         </Label>
-        <Input type="password" />
+        <Input
+          error={errorPassword}
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {(errorLogin || errorPassword) && (
+          <Row>
+            <Alert> Musisz wypełnić wszystkie pola</Alert>
+          </Row>
+        )}
         <Row>
           <Button type="submit">Zaloguj</Button>
         </Row>
