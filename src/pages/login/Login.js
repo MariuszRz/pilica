@@ -9,11 +9,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errorLogin, setErrorLogin] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
-  const [save, setSave] = useState(false);
+  const [load, setLoad] = useState(false);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    setSave(true);
+    setLoad(true);
 
     if (login === '') {
       setErrorLogin(true);
@@ -30,36 +30,36 @@ const Login = () => {
       return;
     }
 
-    // const formData = new FormData();
-    // formData.append('login', login);
-    // formData.append('password', password);
+    const formData = new FormData();
+    formData.append('login', login);
+    formData.append('password', password);
 
-    // const url = `${process.env.REACT_APP_API_URL}/logistyka/api/index.php`;
-    // fetch(url, { method: 'POST', body: formData })
-    //   .then((response) => response.json())
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       Swal.fire({
-    //         icon: 'success',
-    //         title: response.item.number,
-    //         text: response.item.name,
-    //       });
-    //     } else {
-    //       Swal.fire({
-    //         icon: 'error',
-    //         title: 'Nie udało się zapisać ',
-    //         text: `danych`,
-    //       });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     Swal.fire({
-    //       icon: 'error',
-    //       title: 'Nie udało się zapisać',
-    //       text: error,
-    //     });
-    //     setSave(false);
-    //   });
+    const url = `${process.env.REACT_APP_API_URL}/logistyka/api/index.php`;
+    fetch(url, { method: 'POST', body: formData })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          Swal.fire({
+            icon: 'success',
+            title: response.item.number,
+            text: response.item.name,
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Nie udało się zapisać ',
+            text: `danych`,
+          });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Nie udało się zapisać',
+          text: error,
+        });
+        setLoad(false);
+      });
   };
 
   return (
