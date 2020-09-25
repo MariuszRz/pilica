@@ -1,15 +1,26 @@
 import { Button, Form, Input, Label } from 'components';
+import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai';
+import { Row } from 'components/Form/form.css';
 import React from 'react';
 
 const Login = () => {
   return (
     <main>
       <Form>
-        <Label>Login:</Label>
+        <h1>Podaj dane logowania</h1>
+        <Label>
+          <AiOutlineUser />
+          Login:
+        </Label>
         <Input type="text" />
-        <Label>Hasło:</Label>
+        <Label>
+          <AiOutlineLock />
+          Hasło:
+        </Label>
         <Input type="password" />
-        <Button type="submit">Zaloguj</Button>
+        <Row>
+          <Button type="submit">Zaloguj</Button>
+        </Row>
       </Form>
     </main>
   );

@@ -18,3 +18,12 @@ export const Component = styled.form`
     width: 70%;
   }
 `;
+export const Row = styled.div`
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+`;

@@ -6,4 +6,11 @@ export const Component = styled.label`
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 18px;
+  font-weight: 400;
+  svg {
+    width: 32px;
+    height: 32px;
+    padding: 0 5px 0 0;
+  }
 `;

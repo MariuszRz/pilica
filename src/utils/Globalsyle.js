@@ -4,6 +4,7 @@ export default createGlobalStyle`
   *{
     box-sizing:border-box;
     font-weight: 200;
+
   }
 
   body{
