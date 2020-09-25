@@ -1,19 +1,17 @@
-import { Input, Label } from 'components';
+import { Button, Form, Input, Label } from 'components';
 import React from 'react';
 
 const Login = () => {
   return (
-    <div>
-      Login
-      <Label>
-        Login:
-        <Input />
-      </Label>
-      <Label>
-        Hasło:
-        <Input />
-      </Label>
-    </div>
+    <main>
+      <Form>
+        <Label>Login:</Label>
+        <Input type="text" />
+        <Label>Hasło:</Label>
+        <Input type="password" />
+        <Button type="submit">Zaloguj</Button>
+      </Form>
+    </main>
   );
 };
 
