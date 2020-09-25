@@ -1,11 +1,14 @@
 import React from 'react';
-import { Container, Loader } from './button.css';
+import { Container, Loader, Save } from './button.css';
+import PropTypes from 'prop-types';
 
 const Button = ({ ico, children, ...props }) => {
   const Ico = () => {
     switch (ico) {
       case 'load':
         return <Loader />;
+      case 'save':
+        return <Save />;
 
       default:
         return null;
@@ -17,6 +20,10 @@ const Button = ({ ico, children, ...props }) => {
       {children}
     </Container>
   );
+};
+
+Button.prototype = {
+  ico: PropTypes.oneOf(['loader', 'save']),
 };
 
 export default Button;

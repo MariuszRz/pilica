@@ -1,6 +1,6 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { BiLoader } from 'react-icons/bi';
-
+import { AiOutlineSave } from 'react-icons/ai';
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -11,6 +11,18 @@ const rotate = keyframes`
   }
 `;
 
+const opacity = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  } 
+  100% {
+    opacity: 0;
+  }
+`;
 export const Container = styled.button`
   min-width: 150px;
   padding: 10px;
@@ -40,4 +52,10 @@ export const Loader = styled(BiLoader)`
   width: 18px;
   height: 18px;
   animation: ${rotate} 2s linear infinite;
+`;
+
+export const Save = styled(AiOutlineSave)`
+  width: 18px;
+  height: 18px;
+  animation: ${opacity} 1.5s linear infinite;
 `;
