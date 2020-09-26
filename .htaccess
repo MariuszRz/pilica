@@ -1,0 +1,6 @@
+RewriteEngine On
+Header add Access-Control-Allow-Origin *
+Header add Access-Control-Allow-Methods: GET,POST,OPTIONS,DELETE,PUT
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f [OR]
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+RewriteRule ^ /index.html [L]  

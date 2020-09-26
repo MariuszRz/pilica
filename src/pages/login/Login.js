@@ -13,13 +13,13 @@ const Login = () => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    setLoad(true);
 
     if (login === '') {
       setErrorLogin(true);
     } else {
       setErrorLogin(false);
     }
+
     if (password === '') {
       setErrorPassword(true);
     } else {
@@ -29,20 +29,21 @@ const Login = () => {
     if (errorLogin || errorPassword) {
       return;
     }
+    setLoad(true);
 
     const formData = new FormData();
     formData.append('login', login);
     formData.append('password', password);
 
-    const url = `${process.env.REACT_APP_API_URL}/logistyka/api/index.php`;
+    const url = `${process.env.REACT_APP_API_URL}user/login.php`;
     fetch(url, { method: 'POST', body: formData })
       .then((response) => response.json())
       .then((response) => {
         if (response.ok) {
           Swal.fire({
             icon: 'success',
-            title: response.item.number,
-            text: response.item.name,
+            title: response.user.login,
+            text: response.user.email,
           });
         } else {
           Swal.fire({
@@ -51,15 +52,15 @@ const Login = () => {
             text: `danych`,
           });
         }
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Nie udało się zapisać',
-          text: error,
-        });
         setLoad(false);
       });
+    // .catch((error) => {
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: 'Nie udało się zapisać',
+    //     text: error,
+    //   });
+    // });
   };
 
   return (
