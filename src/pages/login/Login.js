@@ -3,6 +3,10 @@ import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai';
 import Swal from 'sweetalert2';
 import { Row } from 'components/Form/form.css';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import localStore from 'store/localStore';
+import actionUser from 'store/login/actions';
 
 const Login = () => {
   const [login, setLogin] = useState('');
@@ -10,6 +14,8 @@ const Login = () => {
   const [errorLogin, setErrorLogin] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [load, setLoad] = useState(false);
+  const logged = useSelector((state) => state.user.logged);
+  const dispatch = useDispatch();
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -40,6 +46,8 @@ const Login = () => {
       .then((response) => response.json())
       .then((response) => {
         if (response.ok) {
+          dispatch(actionUser.user(response.user));
+          localStore('pilica.eu/user', JSON.stringify(response.user.auth));
           Swal.fire({
             icon: 'success',
             title: response.user.login,
@@ -62,7 +70,7 @@ const Login = () => {
     //   });
     // });
   };
-
+  if (logged) return <Redirect to="/" />;
   return (
     <main>
       <Form onSubmit={handleSubmit}>

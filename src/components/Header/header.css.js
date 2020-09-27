@@ -53,8 +53,10 @@ export const Link = styled(NavLink)`
     top: 0;
     left: 0;
     border-bottom: 5px solid ${({ theme }) => theme.color.blue.normal};
+    background: linear-gradient(white, #ebebeb);
     transition: opacity 0.3s ease-in-out;
     opacity: 0;
+    z-index: -1;
   }
   &:last-child {
     border-right: 0px solid ${({ theme }) => theme.color.gray.normal};

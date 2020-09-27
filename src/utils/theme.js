@@ -1,5 +1,9 @@
 export default {
   shadow: '#2e2e2e4f',
+  hover: {
+    background: '#ebebeb',
+    color: '#c4c4c4',
+  },
   color: {
     gray: {
       light: '#2E2E2E80',

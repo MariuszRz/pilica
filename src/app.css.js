@@ -28,18 +28,26 @@ export const Aside = styled.aside`
 
       li {
         list-style-type: none;
-        padding-left: 5px;
-
+        padding: 5px 5px 5px 10px;
+        background: transparent;
+        position: relative;
+        z-index: 1;
         &::before {
           content: '';
-          padding-right: 5px;
+          /* padding-right: 5px; */
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
           opacity: 0;
-          transition: opacity 0.1s ease-in-out;
-          border-left: 2px solid ${({ theme }) => theme.color.blue.light};
+          border-left: 3px solid ${({ theme }) => theme.color.blue.light};
+          background: linear-gradient(+90deg, #ebebeb, white);
+          z-index: -1;
         }
 
         &:hover {
-          color: ${({ theme }) => theme.color.blue.light};
+          color: ${({ theme }) => theme.color.blue.dark};
           cursor: pointer;
         }
 
