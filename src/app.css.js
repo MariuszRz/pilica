@@ -42,7 +42,7 @@ export const Aside = styled.aside`
           height: 100%;
           opacity: 0;
           border-left: 3px solid ${({ theme }) => theme.color.blue.light};
-          background: linear-gradient(+90deg, #ebebeb, white);
+          background: linear-gradient(+90deg, #ebebeb 75%, white 25%);
           z-index: -1;
         }
 
