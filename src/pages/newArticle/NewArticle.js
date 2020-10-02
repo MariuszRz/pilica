@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Input } from 'components';
-// import { ImageResize } from '@ckeditor/ckeditor5-image/src/imageresize';
 import CKEditor from '@ckeditor/ckeditor5-react';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic/build/ckeditor';
 import '@ckeditor/ckeditor5-build-classic/build/translations/pl';
-// import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
-// import ImageResizeEditing from '@ckeditor/ckeditor5-image/src/imageresize/imageresizeedititing';
-// import ImageResizeButtons from '@ckeditor/ckeditor5-image/src/imageresize/imageresizebuttons';
-// import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
-// import ImageResizeEditing from '@ckeditor/ckeditor5-image/src/imageresize/imageresizeedititing';
 
 const NewArticle = () => {
   const [title, setTitle] = useState('');
@@ -50,71 +43,78 @@ const NewArticle = () => {
       </label>
       <CKEditor
         editor={ClassicEditor}
-        config={
-          {
-            // plugins: Image,
-            extraPlugins: { ImageResize },
-            ckfinder: {
-              uploadUrl: `${process.env.REACT_APP_API_URL}upload/file.php`,
-            },
-
-            image: {
-              resizeUnit: 'px',
-              resizeOptions: [
-                {
-                  name: 'imageResize:original',
-                  value: null,
-                  icon: 'original',
-                },
-                {
-                  name: 'imageResize:50',
-                  value: '50',
-                  icon: 'medium',
-                },
-                {
-                  name: 'imageResize:75',
-                  value: '75',
-                  icon: 'large',
-                },
-              ],
-              toolbar: [
-                // ...,
-                'imageResize:50',
-                'imageResize:75',
-                'imageResize:original',
-              ],
-            },
-            toolbar: {
-              items: [
-                'heading',
-                '|',
-                'bold',
-                'italic',
-                'bulletedList',
-                'numberedList',
-                'link',
-                '|',
-                'indent',
-                'outdent',
-                '|',
-                'blockQuote',
-                'insertTable',
-                'undo',
-                'redo',
-                'imageUpload',
-              ],
-            },
-            language: 'pl',
-            licenseKey: '',
-          }
-          // Use the German language for this editor.
-
-          // ...
-        }
+        config={{
+          extraPlugins: ['ImageResize'],
+          ckfinder: {
+            uploadUrl: `${process.env.REACT_APP_API_URL}upload/file.php?id=234`,
+          },
+          image: {
+            resizeUnit: '%',
+            styles: ['alignLeft', 'alignCenter', 'alignRight'],
+            resizeOptions: [
+              {
+                name: 'imageResize:original',
+                label: 'Original',
+                value: null,
+              },
+              {
+                name: 'imageResize:25',
+                label: '25%',
+                value: '25',
+              },
+              {
+                name: 'imageResize:50',
+                label: '50%',
+                value: '50',
+              },
+              {
+                name: 'imageResize:75',
+                label: '75%',
+                value: '75',
+              },
+            ],
+            toolbar: [
+              'imageStyle:alignLeft',
+              'imageStyle:alignCenter',
+              'imageStyle:alignRight',
+              '|',
+              'imageResize',
+              '|',
+              'imageTextAlternative',
+            ],
+          },
+          table: {
+            contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
+          },
+          toolbar: {
+            items: [
+              'heading',
+              '|',
+              'bold',
+              'italic',
+              'bulletedList',
+              'numberedList',
+              'fontSize',
+              'fontColor',
+              'fontBackgroundColor',
+              'link',
+              '|',
+              'indent',
+              'outdent',
+              '|',
+              'blockQuote',
+              'insertTable',
+              'undo',
+              'redo',
+              'imageUpload',
+            ],
+          },
+          language: 'pl',
+          licenseKey: '',
+        }}
         data={content}
         onInit={(editor) => {}}
         onChange={(event, editor) => {
-          console.log(event);
           const data = editor.getData();
           setContent(data);
         }}
