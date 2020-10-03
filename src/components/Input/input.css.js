@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 
 export const Component = styled.input`
+  width: 100%;
   padding: 5px;
-  margin-top: 5px;
+  margin: 10px 0;
   height: 30px;
-  border: 2px solid
-    ${({ theme, error }) =>
-      error ? theme.color.red.light : theme.color.blue.light};
-  border-radius: 5px;
-  transition: border 0.2s ease-in-out;
+  border: 1px solid #c4c4c4;
+  /* transition: border 0.2s ease-in-out; */
   &:active,
   :focus {
-    border: 2px solid ${({ theme }) => theme.color.blue.dark};
+    border: 1px solid ${({ theme }) => theme.activeBorder};
+    box-shadow: inset 0 0 4px ${({ theme }) => theme.activeShadow};
   }
 `;

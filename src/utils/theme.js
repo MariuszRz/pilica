@@ -1,5 +1,8 @@
 export default {
   shadow: '#2e2e2e4f',
+  activeShadow: '#bcdefb',
+  activeBorder: 'cornflowerblue',
+  textColor: '#2E2E2E',
   hover: {
     background: '#ebebeb',
     color: '#c4c4c4',

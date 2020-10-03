@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Loader, Save } from './button.css';
+import { Container, Loader, Save, SaveLoad } from './button.css';
 import PropTypes from 'prop-types';
 
 const Button = ({ ico, children, ...props }) => {
@@ -9,6 +9,8 @@ const Button = ({ ico, children, ...props }) => {
         return <Loader />;
       case 'save':
         return <Save />;
+      case 'save-load':
+        return <SaveLoad />;
 
       default:
         return null;
@@ -23,7 +25,7 @@ const Button = ({ ico, children, ...props }) => {
 };
 
 Button.prototype = {
-  ico: PropTypes.oneOf(['loader', 'save']),
+  ico: PropTypes.oneOf(['loader', 'save', 'save-load']),
 };
 
 export default Button;

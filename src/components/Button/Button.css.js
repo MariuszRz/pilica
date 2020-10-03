@@ -57,5 +57,10 @@ export const Loader = styled(BiLoader)`
 export const Save = styled(AiOutlineSave)`
   width: 18px;
   height: 18px;
+`;
+
+export const SaveLoad = styled(AiOutlineSave)`
+  width: 18px;
+  height: 18px;
   animation: ${opacity} 1.5s linear infinite;
 `;

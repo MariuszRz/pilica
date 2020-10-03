@@ -41,7 +41,7 @@ const Login = () => {
     formData.append('login', login);
     formData.append('password', password);
 
-    const url = `${process.env.REACT_APP_API_URL}user/login.php`;
+    const url = `${process.env.REACT_APP_API_URL}/api/user/login.php`;
     fetch(url, { method: 'POST', body: formData })
       .then((response) => response.json())
       .then((response) => {

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Component = styled.label`
   padding-left: 5px;
-  margin-top: 5px;
+  margin: 10px 0;
   display: flex;
   flex-direction: row;
   align-items: center;

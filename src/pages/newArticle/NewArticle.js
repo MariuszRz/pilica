@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Input } from 'components';
+import { Button, Input } from 'components';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic/build/ckeditor';
 import '@ckeditor/ckeditor5-build-classic/build/translations/pl';
@@ -9,8 +9,26 @@ const NewArticle = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState(1);
-  // const [load, setload] = useState(false);
+  const [ref, setRef] = useState(null);
+  const [load, setLoad] = useState(false);
   const auth = useSelector((state) => state.user.auth);
+
+  useEffect(() => {
+    setLoad(true);
+    fetch(
+      `${process.env.REACT_APP_API_URL}/api/article/create.php?auth=${auth}`,
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          setRef(response.ref);
+          setLoad(false);
+        }
+      });
+    return () => {
+      setLoad(false);
+    };
+  }, [auth]);
 
   const handleSaveArticle = () => {
     const formData = new FormData();
@@ -27,26 +45,18 @@ const NewArticle = () => {
         } else alert(response.error);
       });
   };
+  if (load) return <p>Tworzenie plików...</p>;
   return (
     <>
       <label>
-        Wybierz kategorię :
-        {/* <CategorySelect
-          selectDefault={category}
-          onChange={(e) => {
-            setCategory(e.target.value);
-          }} */}
-        {/* /> */}
-      </label>
-      <label>
-        Podaj nazwę : <Input onChange={(e) => setTitle(e.target.value)} />
+        Podaj tytuł : <Input onChange={(e) => setTitle(e.target.value)} />
       </label>
       <CKEditor
         editor={ClassicEditor}
         config={{
           extraPlugins: ['ImageResize'],
           ckfinder: {
-            uploadUrl: `${process.env.REACT_APP_API_URL}upload/file.php?id=234`,
+            uploadUrl: `${process.env.REACT_APP_API_URL}/api/upload/file.php?ref=${ref}`,
           },
           image: {
             resizeUnit: '%',
@@ -119,6 +129,7 @@ const NewArticle = () => {
           setContent(data);
         }}
       />
+      <Button ico="save">Zapisz</Button>
     </>
   );
 };
