@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Section = styled.section`
   max-width: 1024px;
-  min-height: 90vh;
+  min-height: 80vh;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -17,7 +17,7 @@ export const Aside = styled.aside`
     margin: 15px 0;
     border-radius: 15px;
     box-shadow: 1px 3px 4px ${({ theme }) => theme.shadow};
-
+    border: 1px solid ${({ theme }) => theme.color.blue.light};
     h2 {
       margin: 0 5px;
     }
@@ -29,7 +29,7 @@ export const Aside = styled.aside`
       li {
         list-style-type: none;
         padding: 5px 5px 5px 10px;
-        background: transparent;
+        /* background: transparent; */
         position: relative;
         z-index: 1;
         &::before {
@@ -42,12 +42,13 @@ export const Aside = styled.aside`
           height: 100%;
           opacity: 0;
           border-left: 3px solid ${({ theme }) => theme.color.blue.light};
-          background: linear-gradient(+90deg, #ebebeb 75%, white 25%);
+          /* background: linear-gradient(+90deg, #ebebeb 75%, white 25%); */
           z-index: -1;
         }
 
         &:hover {
           color: ${({ theme }) => theme.color.blue.dark};
+          background: linear-gradient(-90deg, white, #ebebeb);
           cursor: pointer;
         }
 
@@ -65,4 +66,5 @@ export const Main = styled.main`
   border: 1px solid ${({ theme }) => theme.color.blue.light};
   margin: 20px;
   border-radius: 15px;
+  box-shadow: 1px 3px 4px ${({ theme }) => theme.shadow};
 `;

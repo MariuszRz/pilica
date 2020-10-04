@@ -6,9 +6,10 @@ import { Section, Aside, Main } from './app.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Header, PanelNavigation } from 'components';
 import { HomePage, News, History, Login, NewArticle, Panel } from 'pages';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { checkLogin } from 'store/login/operation';
 function App() {
+  const isLogged = useSelector((state) => state.user.logged);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkLogin());
@@ -18,7 +19,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyled />
         <Header />
-        <PanelNavigation />
+        {isLogged && <PanelNavigation />}
         <Section>
           <Aside>
             <nav>

@@ -13,23 +13,26 @@ const NewArticle = () => {
   const [load, setLoad] = useState(false);
   const [save, setSave] = useState(false);
   const auth = useSelector((state) => state.user.auth);
+  const isLogged = useSelector((state) => state.user.logged);
 
   useEffect(() => {
     setLoad(true);
-    fetch(
-      `${process.env.REACT_APP_API_URL}/api/article/create.php?auth=${auth}`,
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.ok) {
-          setRef(response.ref);
-          setLoad(false);
-        }
-      });
+    if (isLogged) {
+      fetch(
+        `${process.env.REACT_APP_API_URL}/api/article/create.php?auth=${auth}`,
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.ok) {
+            setRef(response.ref);
+            setLoad(false);
+          }
+        });
+    }
     return () => {
       setLoad(false);
     };
-  }, [auth]);
+  }, [auth, isLogged]);
 
   const handleSaveArticle = () => {
     setSave(true);
@@ -60,7 +63,7 @@ const NewArticle = () => {
       <CKEditor
         editor={ClassicEditor}
         config={{
-          extraPlugins: ['ImageResize'],
+          extraPlugins: ['ImageResize', 'bold'],
           ckfinder: {
             uploadUrl: `${process.env.REACT_APP_API_URL}/api/upload/file.php?ref=${ref}`,
           },
@@ -110,6 +113,10 @@ const NewArticle = () => {
               'italic',
               'bulletedList',
               'numberedList',
+              'alignment:left',
+              'alignment:right',
+              'alignment:center',
+              'alignment:justify',
               'fontSize',
               'fontColor',
               'fontBackgroundColor',
