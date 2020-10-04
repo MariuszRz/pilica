@@ -19,7 +19,7 @@ const Header = () => {
         {!user.logged ? (
           <Link to={`/login`}>Logowanie</Link>
         ) : (
-          <Link to={`/new`}>{user.login}</Link>
+          <Link to={`/panel`}>{user.login}</Link>
         )}
       </Navigation>
     </Container>

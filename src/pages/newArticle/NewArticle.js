@@ -11,6 +11,7 @@ const NewArticle = () => {
   const [category, setCategory] = useState(1);
   const [ref, setRef] = useState(null);
   const [load, setLoad] = useState(false);
+  const [save, setSave] = useState(false);
   const auth = useSelector((state) => state.user.auth);
 
   useEffect(() => {
@@ -31,18 +32,23 @@ const NewArticle = () => {
   }, [auth]);
 
   const handleSaveArticle = () => {
+    setSave(true);
     const formData = new FormData();
     formData.append('title', title);
     formData.append('article', content);
     formData.append('category', category);
     formData.append('auth', auth);
-    const url = `${process.env.REACT_APP_API_URL}/api/article/add.php`;
+    formData.append('ref', ref);
+    const url = `${process.env.REACT_APP_API_URL}/api/article/save.php`;
     fetch(url, { method: 'POST', body: formData })
       .then((response) => response.json())
       .then((response) => {
         if (response.ok) {
           alert('ok dodano');
-        } else alert(response.error);
+        } else {
+          alert(response.error);
+        }
+        setSave(false);
       });
   };
   if (load) return <p>Tworzenie plików...</p>;
@@ -129,7 +135,9 @@ const NewArticle = () => {
           setContent(data);
         }}
       />
-      <Button ico="save">Zapisz</Button>
+      <Button ico={save ? 'save-load' : 'save'} onClick={handleSaveArticle}>
+        {save ? 'Zapisywanie' : 'Zapisz'}
+      </Button>
     </>
   );
 };

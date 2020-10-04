@@ -5,11 +5,11 @@ export const Component = styled.input`
   padding: 5px;
   margin: 10px 0;
   height: 30px;
-  border: 1px solid #c4c4c4;
+  border: 1px solid ${({ theme }) => theme.border.normal};
   /* transition: border 0.2s ease-in-out; */
   &:active,
   :focus {
-    border: 1px solid ${({ theme }) => theme.activeBorder};
+    border: 1px solid ${({ theme }) => theme.border.active};
     box-shadow: inset 0 0 4px ${({ theme }) => theme.activeShadow};
   }
 `;

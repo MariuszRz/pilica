@@ -7,6 +7,8 @@ export const Container = styled.header`
   flex-direction: row;
   justify-content: space-between;
   box-shadow: 0 3px 6px ${({ theme }) => theme.shadow};
+  z-index: 5;
+  position: relative;
 `;
 
 export const Logo = styled.div`

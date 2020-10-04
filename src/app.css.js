@@ -61,5 +61,8 @@ export const Aside = styled.aside`
 
 export const Main = styled.main`
   min-width: 800px;
-  padding: 20px 10px;
+  padding: 10px;
+  border: 1px solid ${({ theme }) => theme.color.blue.light};
+  margin: 20px;
+  border-radius: 15px;
 `;

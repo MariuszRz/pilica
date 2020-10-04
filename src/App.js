@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyled from 'utils/Globalsyle';
 import theme from 'utils/theme';
 import { Section, Aside, Main } from './app.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Header } from 'components';
-import { HomePage, News, History, Login, NewArticle } from 'pages';
-
+import { Header, PanelNavigation } from 'components';
+import { HomePage, News, History, Login, NewArticle, Panel } from 'pages';
+import { useDispatch } from 'react-redux';
+import { checkLogin } from 'store/login/operation';
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkLogin());
+  }, [dispatch]);
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyled />
         <Header />
+        <PanelNavigation />
         <Section>
           <Aside>
             <nav>
@@ -53,6 +59,7 @@ function App() {
               <Route path={`/history`} exact component={History} />
               <Route path={`/login`} component={Login} />
               <Route path={`/new`} component={NewArticle} />
+              <Route path={`/panel`} component={Panel} />
               <Route component={HomePage} />
             </Switch>
           </Main>

@@ -1,7 +1,12 @@
 export default {
   shadow: '#2e2e2e4f',
+
+  border: {
+    normal: '#c4c4c4',
+    active: 'cornflowerblue',
+  },
   activeShadow: '#bcdefb',
-  activeBorder: 'cornflowerblue',
+
   textColor: '#2E2E2E',
   hover: {
     background: '#ebebeb',
