@@ -18,8 +18,13 @@ export default createGlobalStyle`
     max-width: 1024px; 
     margin: 0 auto;
   }
-
+  strong{
+    font-weight: 700;
+  }
   h1{
     font-size: 32px;
   }
+  /* .ck-content{
+    height: 300px;
+  }  */
 `;

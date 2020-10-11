@@ -4,10 +4,10 @@ import { Button, Input } from 'components';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic/build/ckeditor';
 import '@ckeditor/ckeditor5-build-classic/build/translations/pl';
-
+import Swal from 'sweetalert2';
 const NewArticle = () => {
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState('<br>');
   const [category, setCategory] = useState(1);
   const [ref, setRef] = useState(null);
   const [load, setLoad] = useState(false);
@@ -30,6 +30,20 @@ const NewArticle = () => {
         });
     }
     return () => {
+      Swal.fire({
+        title: 'Twoje dane nie zostały zapisane',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: `Zapisz`,
+        denyButtonText: `Nie zapisuj`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          handleSaveArticle();
+        } else if (result.isDenied) {
+          Swal.fire('Changes are not saved', '', 'info');
+        }
+      });
       setLoad(false);
     };
   }, [auth, isLogged]);
@@ -63,13 +77,16 @@ const NewArticle = () => {
       <CKEditor
         editor={ClassicEditor}
         config={{
-          extraPlugins: ['ImageResize', 'bold'],
+          // extraPlugins: ['ImageResize'],
           ckfinder: {
             uploadUrl: `${process.env.REACT_APP_API_URL}/api/upload/file.php?ref=${ref}`,
           },
           image: {
             resizeUnit: '%',
             styles: ['alignLeft', 'alignCenter', 'alignRight'],
+            alignment: {
+              options: ['left', 'center', 'right'],
+            },
             resizeOptions: [
               {
                 name: 'imageResize:original',
@@ -103,23 +120,27 @@ const NewArticle = () => {
             ],
           },
           table: {
-            contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
+            contentToolbar: [
+              'tableColumn',
+              'tableRow',
+              'mergeTableCells',
+              'tableCellProperties',
+              'tableProperties',
+            ],
           },
           toolbar: {
             items: [
               'heading',
+              'fontSize',
               '|',
+              'fontColor',
+              'fontBackgroundColor',
               'bold',
               'italic',
               'bulletedList',
               'numberedList',
-              'alignment:left',
-              'alignment:right',
-              'alignment:center',
-              'alignment:justify',
-              'fontSize',
-              'fontColor',
-              'fontBackgroundColor',
+              'alignment',
+
               'link',
               '|',
               'indent',

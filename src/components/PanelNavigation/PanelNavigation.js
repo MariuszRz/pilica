@@ -18,7 +18,7 @@ const PanelNavigation = () => {
         <GrDocumentVerified />
         Opublikowane
       </Link>
-      <Link to={`/panel/create`}>
+      <Link to={`/panel/draft`}>
         <GrDocumentTime />W opracowaniu
       </Link>
       <Link to={`/panel/setting`}>
