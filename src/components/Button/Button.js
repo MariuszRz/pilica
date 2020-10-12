@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Loader, Save, SaveLoad } from './button.css';
+import { Container, Loader, Save, SaveLoad, Edit } from './button.css';
 import PropTypes from 'prop-types';
 
 const Button = ({ ico, children, ...props }) => {
@@ -7,6 +7,8 @@ const Button = ({ ico, children, ...props }) => {
     switch (ico) {
       case 'load':
         return <Loader />;
+      case 'edit':
+        return <Edit />;
       case 'save':
         return <Save />;
       case 'save-load':

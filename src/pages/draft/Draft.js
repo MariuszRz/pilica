@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { ItemList } from 'components';
 const Draft = () => {
   const [items, setItems] = useState([]);
   const auth = useSelector((status) => status.user.auth);
@@ -14,7 +15,9 @@ const Draft = () => {
           console.log(items);
         }
       });
-    return setItems([]);
+    return () => {
+      setItems([]);
+    };
   }, [auth]);
 
   if (items.length === 0) return null;
@@ -23,7 +26,7 @@ const Draft = () => {
     <div>
       <p>W opracowaniu</p>
       {items.map((item) => (
-        <p key={item.id}>{`${item.title} - ${item.reference}`}</p>
+        <ItemList key={item.id} item={item}></ItemList>
       ))}
     </div>
   );

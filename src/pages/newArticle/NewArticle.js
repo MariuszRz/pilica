@@ -30,20 +30,6 @@ const NewArticle = () => {
         });
     }
     return () => {
-      Swal.fire({
-        title: 'Twoje dane nie zostały zapisane',
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: `Zapisz`,
-        denyButtonText: `Nie zapisuj`,
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          handleSaveArticle();
-        } else if (result.isDenied) {
-          Swal.fire('Changes are not saved', '', 'info');
-        }
-      });
       setLoad(false);
     };
   }, [auth, isLogged]);
@@ -68,6 +54,7 @@ const NewArticle = () => {
         setSave(false);
       });
   };
+
   if (load) return <p>Tworzenie plików...</p>;
   return (
     <>

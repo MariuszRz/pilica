@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { BiLoader } from 'react-icons/bi';
+import { BiLoader, BiEdit } from 'react-icons/bi';
 import { AiOutlineSave } from 'react-icons/ai';
 const rotate = keyframes`
   from {
@@ -63,4 +63,8 @@ export const SaveLoad = styled(AiOutlineSave)`
   width: 18px;
   height: 18px;
   animation: ${opacity} 1.5s linear infinite;
+`;
+export const Edit = styled(BiEdit)`
+  width: 18px;
+  height: 18px;
 `;
