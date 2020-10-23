@@ -8,11 +8,13 @@ import { Header, PanelNavigation } from 'components';
 import { HomePage, News, History, Login, NewArticle, Panel } from 'pages';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkLogin } from 'store/login/operation';
+import { getConfig } from 'store/config/operation';
 function App() {
   const isLogged = useSelector((state) => state.user.logged);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkLogin());
+    dispatch(getConfig());
   }, [dispatch]);
   return (
     <BrowserRouter>

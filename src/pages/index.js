@@ -6,3 +6,4 @@ export { default as NewArticle } from 'pages/newArticle';
 export { default as Panel } from 'pages/panel';
 export { default as Publish } from 'pages/publish';
 export { default as Draft } from 'pages/draft';
+export { default as Edit } from 'pages/edit';

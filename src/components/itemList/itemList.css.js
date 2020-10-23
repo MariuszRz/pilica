@@ -12,6 +12,9 @@ export const Component = styled.div`
 `;
 export const Title = styled.h2`
   margin: 0;
+  span {
+    font-size: 12px;
+  }
 `;
 
 export const Content = styled.div`
