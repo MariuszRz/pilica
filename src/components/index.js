@@ -6,3 +6,5 @@ export { default as Form } from 'components/Form';
 export { default as Alert } from 'components/Alert';
 export { default as ItemList } from 'components/itemList';
 export { default as PanelNavigation } from 'components/PanelNavigation';
+export { default as Select } from 'components/select';
+export { default as Herb } from 'components/Herb';

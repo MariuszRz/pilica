@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Input } from 'components';
+import { Button, Input, Select } from 'components';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic/build/ckeditor';
 import '@ckeditor/ckeditor5-build-classic/build/translations/pl';
@@ -13,6 +13,7 @@ const Edit = (props) => {
   const [load, setLoad] = useState(false);
   const [save, setSave] = useState(false);
   const auth = useSelector((state) => state.user.auth);
+  const categoryItems = useSelector((state) => state.config.category);
   const isLogged = useSelector((state) => state.user.logged);
 
   useEffect(() => {
@@ -49,12 +50,16 @@ const Edit = (props) => {
   return (
     <>
       <label>
-        Podaj tytuł : <Input onChange={(e) => setTitle(e.target.value)} />
+        Podaj tytuł :
+        <Input onChange={(e) => setTitle(e.target.value)} />
+      </label>
+      <label>
+        Wybierz dział:
+        <Select items={categoryItems} />
       </label>
       <CKEditor
         editor={ClassicEditor}
         config={{
-          // extraPlugins: ['ImageResize'],
           ckfinder: {
             uploadUrl: `${process.env.REACT_APP_API_URL}/api/upload/file.php?ref=${ref}`,
           },
