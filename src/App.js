@@ -10,10 +10,12 @@ function App() {
         <ThemeProvider theme={theme}>
             <BrowserRouter>
                 <Header />
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/artykuly" element={<Article />} />
-                </Routes>
+                <div className="container">
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/artykuly" element={<Article />} />
+                    </Routes>
+                </div>
                 <GlobalStyle />
             </BrowserRouter>
         </ThemeProvider>

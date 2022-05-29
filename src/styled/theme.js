@@ -4,22 +4,37 @@ const theme = {
         bg: "#16384c",
         text: {
             light: "#ffffff",
-            dark: "#000000",
+            normal: "rgb(26, 32, 39);",
         },
-        main: {
-            light: "#4dabf5",
-            normal: "#2196f3",
-            dark: "#1769aa",
+        primary: {
+            light: "#42a5f5",
+            normal: "#1976d2",
+            dark: "#1976d2",
         },
-        green: {
-            light: "#33eb91",
-            normal: "#00e676",
-            dark: "#00a152",
+        secondary: {
+            light: "#ba68c8",
+            normal: "#9c27b0",
+            dark: "#7b1fa2",
         },
-        red: {
-            light: "#f6685e",
-            normal: "#f44336",
-            dark: "#aa2e25",
+        error: {
+            light: "#ef5350",
+            normal: "#d32f2f",
+            dark: "#c62828",
+        },
+        warning: {
+            light: "#ff9800",
+            normal: "#ed6c02",
+            dark: "#e65100",
+        },
+        info: {
+            light: "#03a9f4",
+            normal: "#0288d1",
+            dark: "#01579b",
+        },
+        sucess: {
+            light: "#4caf50",
+            normal: "#2e7d32",
+            dark: "#1b5e20",
         },
     },
 };
